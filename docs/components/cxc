@@ -1,0 +1,109 @@
+ import React, { useState } from 'react';
+import * as FaIcons from 'react-icons/fa';
+import * as AiIcons from 'react-icons/ai';
+import { Link } from 'react-router-dom';
+import { SidebarData } from './SidebarData';
+import './Navbar.css';
+import { IconContext } from 'react-icons';
+
+function Navbar() {
+  const [sidebar, setSidebar] = useState(false);
+
+  const showSidebar = () => setSidebar(!sidebar);
+
+  return (
+    <>
+      <IconContext.Provider value={{ color: '#fff' }}>
+        <div className='navbar'>
+          <Link to='#' className='menu-bars'>
+            <FaIcons.FaBars onClick={showSidebar} />
+          </Link>
+        </div>
+        <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
+          <ul className='nav-menu-items' onClick={showSidebar}>
+            <li className='navbar-toggle'>
+              <Link to='#' className='menu-bars'>
+                <AiIcons.AiOutlineClose />
+              </Link>
+            </li>
+            {SidebarData.map((item, index) => {
+              return (
+                <li key={index} className={item.cName}>
+                  <Link to={item.path}>
+                    {item.icon}
+                    <span>{item.title}</span>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+      </IconContext.Provider>
+    </>
+  );
+}
+
+export default Navbar;
+// Sized Sidedrawer
+import { Div, Button, SideDrawer, Icon, Text } from "atomize";
+
+const SizeSideDrawer = ({ isOpen, onClose }) => {
+  return (
+    <SideDrawer isOpen={isOpen} onClose={onClose} w={{ xs: "100vw", sm: "16rem" }}>
+      <Div d="flex" m={{ b: "4rem" }}>
+        <Icon name="AlertSolid" color="warning700" />
+        <Text p={{ l: "0.5rem", t: "0.25rem" }}>This is the modal</Text>
+      </Div>
+      <Div d="flex" justify="flex-end">
+        <Button
+          onClick={onClose}
+          bg="gray200"
+          textColor="medium"
+          m={{ r: "1rem" }}
+        >
+          Cancel
+        </Button>
+        <Button onClick={onClose} bg="info700">
+          Submit
+        </Button>
+      </Div>
+    </SideDrawer>
+  );
+};
+
+class Drawer extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      showSideDrawer: false
+    };
+  }
+
+  render() {
+    const { showSideDrawer } = this.state;
+
+    return (
+      <>
+        <Button
+          bg="info700"
+          hoverBg="info600"
+          m={{ r: "0.5rem" }}
+          onClick={() =>
+            this.setState({
+              showSideDrawer: true,
+            })
+          }
+        >
+          Open 16rem width SideDrawer
+        </Button>
+        <SizeSideDrawer
+          isOpen={showSideDrawer}
+          onClose={() => this.setState({ showSideDrawer: false })}
+        />
+      </>
+    );
+  }
+}
+
+export default Drawer;
