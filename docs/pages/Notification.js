@@ -10,141 +10,115 @@ function Notification (){
 
       <Div className="notification">
        <Div p={{ x: "0.5rem", y: "0.5rem" }} m={{ t: "1rem", l: "0.5rem" }}>
-     
-      <Div rounded="md" className="recent_row" m={{ t: "0.5rem" }} p={{ x: "0.5rem", y: "0.5rem" }}>
+       <Text textSize="heading" m={{ t: "1rem" }}
+          textWeight="500">
+          Notification Settings
+        </Text>
+       <Div d="flex" bg="gray300" rounded="md">
+          <Div p="1rem">
+            <Iconly
 
-        <Row >
-          <Col >
-            <Div m={{ t: "2em" }}>
-              <Iconly
+              name="Wallet"
+              primaryColor={`#252859`}
+              set='broken'
+              secondaryColor='orange'
+              stroke='bold'
+            />
+          </Div>
+          <Div p="1rem">
+            <Text
+              textSize={`20px`}
+              textColor={`#ff9b00`}
+              textWeight="700"
 
-                name="Wallet"
-                primaryColor={`#252859`}
-                set='bulk'
-                secondaryColor='orange'
-                stroke='bold'
-              />
-            </Div>
+            >
+              Deposit
+            </Text>
+            <Text>
+              You have successfully deposited USD 500 to your account.
+              your account balance is USD6000
+            </Text>
+          </Div>
+        </Div>
 
-          </Col>
-          <Col >
-            <Div>
-              <Text textSize="subheader" textWeight="500">Deposit</Text>
-              <Text textWeight="500">UGX 300,000</Text>
-              <Text textColor="green">Successful</Text>
-            </Div>
 
-          </Col>
-          <Col >
-            <Div className="time">
-              <Text textColor="orange" textWeight="500">Yesterday</Text>
-              <Text textWeight="500">2:00 hrs</Text>
+        <Div m={{t:"1rem"}} d="flex" bg="gray300" rounded="md">
+          <Div p="1rem">
+            <Iconly
 
-            </Div>
+              name="Logout"
+              primaryColor={`#252859`}
+              set='broken'
+              secondaryColor='orange'
+              stroke='bold'
+            />
+          </Div>
+          <Div p="1rem">
+            <Text
+              textSize={`20px`}
+              textColor={`#ff9b00`}
+              textWeight="700"
 
-          </Col>
-        </Row>
-      </Div>
-      <Div rounded="md" className="recent_row" m={{ t: "0.5rem" }} p={{ x: "0.5rem", y: "0.5rem" }}>
-        <Row >
-          <Col >
-            <Div m={{ t: "2em" }}>
-              <Iconly
+            >
+              Withdraw
+            </Text>
+            <Text>
+              You have successfully withdrawn USD 500 to your account.
+              your account balance is USD6000
+            </Text>
+          </Div>
+        </Div>
+        <Div m={{t:"1rem"}} d="flex" bg="gray300" rounded="md">
+          <Div p="1rem">
+            <Iconly
 
-                name="Wallet"
-                primaryColor={`#252859`}
-                set='bulk'
-                secondaryColor='orange'
-                stroke='bold'
-              />
-            </Div>
+              name="People"
+              primaryColor={`#252859`}
+              set='broken'
+              secondaryColor='orange'
+              stroke='bold'
+            />
+          </Div>
+          <Div p="1rem">
+            <Text
+              textSize={`20px`}
+              textColor={`#ff9b00`}
+              textWeight="700"
 
-          </Col>
-          <Col >
-            <Div>
-              <Text textSize="subheader" textWeight="500">Deposit</Text>
-              <Text textWeight="500">UGX 300,000</Text>
-              <Text textColor="red" >failed</Text>
-            </Div>
+            >
+              Sacco
+            </Text>
+            <Text>
+             Yout invited to join this Abana bakintu Sacco group
+            </Text>
+          </Div>
+        </Div>
+        <Div m={{t:"1rem"}} d="flex" bg="gray300" rounded="md">
+          <Div p="1rem">
+            <Iconly
 
-          </Col>
-          <Col >
-            <Div className="time">
-              <Text textColor="orange" textWeight="500">Yesterday</Text>
-              <Text textWeight="500">2:00 hrs</Text>
+              name="Logout"
+              primaryColor={`#252859`}
+              set='Wallet'
+              secondaryColor='orange'
+              stroke='bold'
+            />
+          </Div>
+          <Div p="1rem">
+            <Text
+              textSize={`20px`}
+              textColor={`#ff9b00`}
+              textWeight="700"
 
-            </Div>
-
-          </Col>
-        </Row>
-      </Div>
-      <Div rounded="md" className="recent_row" m={{ t: "0.5rem" }} p={{ x: "0.5rem", y: "0.5rem" }}>
-        <Row>
-          <Col >
-            <Div m={{ t: "2em" }}>
-              <Iconly
-
-                name="Wallet"
-                primaryColor={`#252859`}
-                set='bulk'
-                secondaryColor='orange'
-                stroke='bold'
-              />
-            </Div>
-
-          </Col>
-          <Col >
-            <Div>
-              <Text textSize="subheader" textWeight="500">Withdraw</Text>
-              <Text textWeight="500">UGX 300,000</Text>
-              <Text textColor="red" >Failed</Text>
-            </Div>
-
-          </Col>
-          <Col >
-            <Div className="time">
-              <Text textColor="orange" textWeight="500">Yesterday</Text>
-              <Text textWeight="500">2:00 hrs</Text>
-
-            </Div>
-
-          </Col>
-        </Row>
-      </Div>
-      <Div rounded="md" className="recent_row" m={{ t: "0.5rem" }} p={{ x: "0.5rem", y: "0.5rem" }}>
-        <Row>
-          <Col >
-            <Div m={{ t: "2em" }}>
-              <Iconly
-
-                name="Wallet"
-                primaryColor={`#252859`}
-                set='bulk'
-                secondaryColor='orange'
-                stroke='bold'
-              />
-            </Div>
-
-          </Col>
-          <Col >
-            <Div>
-              <Text textSize="subheader" textWeight="500">Withdraw</Text>
-              <Text textWeight="500">UGX 300,000</Text>
-              <Text textColor="red" >Failed</Text>
-            </Div>
-
-          </Col>
-          <Col >
-            <Div className="time">
-              <Text textColor="orange" textWeight="500">Yesterday</Text>
-              <Text textWeight="500">2:00 hrs</Text>
-
-            </Div>
-
-          </Col>
-        </Row>
-      </Div>
-    </Div>  
+            >
+              Investment club
+            </Text>
+            <Text>
+              You have successfully deposited USD200 to your Lawyers hub Investment club
+            </Text>
+          </Div>
+        </Div>
+    </Div> 
       </Div>
      
             

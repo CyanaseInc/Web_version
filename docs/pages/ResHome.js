@@ -3,23 +3,40 @@ import { Container, Text, Icon, Div, Col, Row, Switch, SideDrawer } from "atomiz
 import { Iconly } from 'react-iconly';
 import Switcher from "../components/Switcher";
 import ResGoal from './ResGoal';
+import MyMenue from './ResMenue';
 import { Link } from 'react-router-dom';
 
 
 function ResHome() {
 
+  //State to show Goals Modal
   const [show, setShow] = useState(false);
+  //State to show menue Modal
+  const [showMenue, setMenue] = useState(false);
 
   const GoalDrawer = ({ isOpen, onClose }) => {
 
     return (
-      <SideDrawer bg="gray100" isOpen={isOpen} onClose={onClose} w={{ xs: "100vw", md: "50rem" }}>
+      <SideDrawer bg="gray1F00" isOpen={isOpen} onClose={onClose} w={{ xs: "100vw", md: "50rem" }}>
         <Div onClick={onClose} d="flex" m={{ b: "4rem" }}>
           <Icon size="30px" name="LeftArrowSolid" color={`#252859`} />
 
         </Div>
 
         <ResGoal />
+      </SideDrawer>
+    );
+  };
+  const MenueDrawer = ({ isOpen, onClose }) => {
+
+    return (
+      <SideDrawer bg="gray1F00" isOpen={isOpen} onClose={onClose} w={{ xs: "100vw", md: "50rem" }}>
+        <Div onClick={onClose} d="flex" m={{ b: "4rem" }}>
+          <Icon size="30px" name="LeftArrowSolid" color={`#252859`} />
+
+        </Div>
+
+        <MyMenue />
       </SideDrawer>
     );
   };
@@ -59,6 +76,23 @@ function ResHome() {
               </Div>
               <Div flexGrow="1" d="flex" justify="flex-end" >
                 <Row>
+                <Col>
+                    <Div
+                      onClick={() => setMenue(true)}
+                      h="40px" w="40px"
+                      rounded="circle"
+                      bg="#3C426B"
+                      p={{ x: "0.5rem", y: "0.5rem" }}>
+
+                      <Iconly
+                        primaryColor='#ff9b00'
+                        name="Activity"
+                        set='broken'
+                        stroke='bold'
+                      />
+                    </Div>
+                   
+                  </Col>
                   <Col>
 
                     <Div h="40px" w="40px" align="center" rounded="circle" bg="#3C426B" p={{ x: "0.5rem", y: "0.5rem" }}>
@@ -85,10 +119,9 @@ function ResHome() {
 
                       <Iconly
                         primaryColor='#ff9b00'
-                        name="AddUser"
+                        name="TimeCircle"
                         set='broken'
                         stroke='bold'
-
                       />
                     </Div>
                     <GoalDrawer
@@ -98,7 +131,10 @@ function ResHome() {
                   </Col>
                 </Row>
 
-
+                <MenueDrawer
+                      isOpen={showMenue}
+                      onClose={() => setMenue(false)}
+                    />
 
 
               </Div>

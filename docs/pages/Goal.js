@@ -4,11 +4,144 @@ import "../app.css";
 import { Iconly } from 'react-iconly';
 import ProgressBar from "../components/progressbar";
 import { useForm } from "react-hook-form";
+import StepOne from '../components/goal/StepOne';
+import StepTwo from '../components/goal/StepTwo';
+import StepThree from '../components/goal/StepThree';
+import Final from '../components/goal/Final';
+import StepFour from "../components/goal/StepFour";
+import StepFive from "../components/goal/StepFive";
 
 
 
 
 function Goal() {
+
+  // States to handle errors in the form
+  const { register, handleSubmit, formState: { errors } } = useForm();
+
+  const onSubmit = (datal) => {
+
+      // change the status to laoding
+    
+      console.log(datal);
+
+      // send data to the API
+
+      const API_PATH = 'http://localhost:3000/handler.php';
+
+      // MAKE AN AJAX REQUEST
+
+      axios({
+          method: 'post',
+          url: `${API_PATH}`,
+          headers: { 'content-type': 'application/json' },
+          data: datal
+      })
+          .then(resulta => {
+
+              console.log(resulta.result);
+          })
+          .catch(error => alert(error));
+  }
+  //states to handle the previous and next buttons
+  const [step, setstep] = useState(1);
+
+  //states for form data
+  const [formData, setFormData] = useState({
+
+
+  });
+
+
+
+  // function for going to next step by increasing step state by 1
+  const nextStep = () => {
+    setstep(step + 1);
+  };
+  // function for going to previous step by decreasing step state by 1
+  const prevStep = () => {
+    setstep(step - 1);
+  };
+
+  // handling form input data by taking onchange value and updating our previous form data state
+  const handleInputData = input => e => {
+    // input value from the form
+    const { value } = e.target;
+
+    //updating for data state taking previous state and then adding new value to create new object
+    setFormData(prevStep => ({
+      ...prevStep,
+      [input]: value
+    }));
+  }
+
+
+  const GoalSteps = () => {
+
+    switch (step) {
+      // case 1 to show stepOne form and passing nextStep, prevStep, and handleInputData as handleFormData method as prop and also formData as value to the fprm
+      case 1:
+        return (
+
+
+          <StepOne nextStep={nextStep} values={formData} />
+
+        );
+      case 2:
+        return (
+
+
+          <StepTwo prevStep={prevStep} nextStep={nextStep} handleFormData={handleInputData} values={formData} />
+
+        );
+      case 3:
+        return (
+
+
+          <StepThree prevStep={prevStep} nextStep={nextStep} handleFormData={handleInputData} values={formData} />
+
+        );
+      case 4:
+        return (
+
+
+          <StepFour prevStep={prevStep} nextStep={nextStep} handleFormData={handleInputData} values={formData} />
+
+        );
+      case 5:
+        return (
+
+
+          <StepFive prevStep={prevStep} nextStep={nextStep} handleFormData={handleInputData} values={formData} />
+
+        );
+      // O
+      // Only formData is passed as prop to show the final value at form submit
+      case 6:
+        return (
+          <div className="App">
+            <Container>
+              <Row>
+                <Col md={{ span: 6, offset: 3 }} className="custom-margin">
+                  <Final prevStep={prevStep} values={formData} />
+                </Col>
+              </Row>
+            </Container>
+          </div>
+        );
+
+      // default case to show nothing
+      default:
+        return (
+          <div className="App">
+          </div>
+        );
+    }
+
+
+
+  }
+
   /****************************************************** * PROGRESS BAR STATES*****************/
   const [completed, setCompleted] = useState(0);
 
@@ -23,20 +156,20 @@ function Goal() {
     return (
       <SideDrawer isOpen={isOpen} onClose={onClose} w={{ xs: "100vw", md: "50rem" }}>
         <Div onClick={onClose} d="flex" m={{ b: "4rem" }}>
-          <Icon size="40px" name="LeftArrowSolid" color={`#252859`} />
-          <Text p={{ l: "0.5rem", t: "0.25rem" }}>This is the modal</Text>
+          <Icon size="35px" name="LeftArrowSolid" color={`#252859`} />
         </Div>
-    
+        <GoalSteps />
+
       </SideDrawer>
     );
   };
-
-  const [show, setShow] = useState(false);
+ // states to show and hide the set goals sidedrawer
+  const [showDrawer, setShow] = useState(false);
   //// *****************************TOP UP BUTTON STATE MODAL****************************************************
 
+  // states to show and hide topup wallet modal
   const [showTopUP, setTopUp] = useState(false);
-  const { register, handleSubmit, formState: { errors } } = useForm();
-  
+
   const TopupModal = ({ isOpen, onClose }) => {
 
     return (
@@ -57,58 +190,62 @@ function Goal() {
           onClick={onClose}
           cursor="pointer"
         />
-        <Div m={{t:"2rem"}} justify="center">
+        <Div m={{ t: "2rem" }} justify="center">
           <Div className="toper">
 
-          <Iconly
-                 
-                  name="Wallet"
-                  primaryColor={`#252859`}
-                  set='bulk'
-                  secondaryColor='orange'
-                  stroke='bold'
-                />
+            <Iconly
+
+              name="Wallet"
+              primaryColor={`#252859`}
+              set='bulk'
+              secondaryColor='orange'
+              stroke='bold'
+            />
           </Div>
 
           <Text m={{ t: "1rem" }} textSize="subheader" textColor="#252859" textWeight="500">
             Top up your investment wallet
           </Text>
-          <Text>
+          <Text
+           textAlign="center" textColor="#898989"
+          >
             Make it easy to choose your investment type by depositing to your wallet
           </Text>
-          <Div justify="center">
-            <Input  w={{ xs: '100%', md: '24rem' }}
-              {...register("amount", { required: true, maxLength: 15 })}
-              placeholder="Enter amount" name="amount" type="text"
-m={{l:"5rem", t:"3rem"}}
-              p={{ x: "2.5rem" }}
-              prefix={
+          <form className="myform" onSubmit={handleSubmit(onSubmit)}>
+            <Div justify="center">
+              <Input w={{ xs: '100%', md: '24rem' }}
+                {...register("amount", { required: true, maxLength: 15 })}
+                placeholder="Enter amount" name="amount" type="text"
+                m={{ l: "5rem", t: "3rem" }}
+                p={{ x: "2.5rem" }}
+                prefix={
 
-                <Iconly
-                  className="ivn"
-                  name="Wallet"
-                  primaryColor={`#252859`}
-                  set='bulk'
-                  secondaryColor='orange'
-                  stroke='bold'
-                />
-              }
-            />
- <Button  w="24rem"
- m={{ t: "2rem", l:"5rem" }} className="button2"
-                    onClick={() =>
-                      setTopUp(true)
-                    }
-                    bg="warning700"
-                    shadow="3"
-                    hoverShadow="4"
-                  >
-                    Deposit
-                  </Button>
-          </Div>
+                  <Iconly
+                    className="ivn"
+                    name="Wallet"
+                    primaryColor={`#252859`}
+                    set='bulk'
+                    secondaryColor='orange'
+                    stroke='bold'
+                  />
+                }
+              />
+              {errors.amount && <p className="text-error">Enter amount to continue</p>}
+              <Button w="24rem"
+                m={{ t: "2rem", l: "5rem" }} className="button2"
+                onClick={() =>
+                  setTopUp(true)
+                }
+                bg="warning700"
+                shadow="3"
+                hoverShadow="4"
+              >
+                Deposit
+              </Button>
+            </Div>
+          </form>
 
-
-          {errors.fname && <p className="text-error">Your first name is required</p>}
+          
 
         </Div>
 
@@ -118,13 +255,13 @@ m={{l:"5rem", t:"3rem"}}
   };
   return (
     <>
-      <Container className="menu">
+      <Container>
 
-        <Div m={{ t: "4rem" }} className="cont">
+        <Div m={{ t: "4rem" }} className="cont menu">
 
           <Row flexWrap="wrap" d="flex" align="center" flexDir="row">
 
-            <Col size="9">
+            <Col >
               <Div>
                 <Text textSize="subheader" textColor={`#252859`}><b>WALLET</b></Text>
                 <Div rounded="sm" className="my_card" justify="center" align="center" p={{ y: "2rem", x: "1.25rem" }} bg={`#FDE5C3`}>
@@ -287,7 +424,7 @@ m={{l:"5rem", t:"3rem"}}
               </Div>
             </Col>
             {/***************************** Goal columns *************************/}
-            <Col flex size="3">
+            <Col>
               <Div className="" d="flex">
                 <Text textSize="subheader" textColor={`#252859`}><b>GOALS</b></Text>
                 <Button
@@ -297,7 +434,7 @@ m={{l:"5rem", t:"3rem"}}
                   h="2rem"
                   w="7.5rem"
                   rounded="md"
-                  m={{ l: "5rem", t: "-0.5rem" }}
+                  m={{ l: "3rem", t: "-0.5rem" }}
 
                   className="button2"
                   bg={`#252859`}
@@ -307,7 +444,7 @@ m={{l:"5rem", t:"3rem"}}
                   Set goal
                 </Button>
                 <GoalDrawer
-                  isOpen={show}
+                  isOpen={showDrawer}
                   onClose={() => setShow(false)}
                 />
               </Div>

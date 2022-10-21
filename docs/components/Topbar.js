@@ -9,8 +9,8 @@ const Topbar = () => {
     <>
 
       <Div className="mytop"  m={{ t: "2rem" }} >
-        <Row flex="row">
-          <Col >
+        <Div d="flex" justify="center" flex="row">
+          
             <Input w={{ xs: '100%', md: '24rem' }} className="input"
               placeholder="Search here ..."
               name="phone" type="text"
@@ -27,8 +27,8 @@ const Topbar = () => {
                 />
               }
             />
-          </Col>
-          <Col>
+          
+          
           <Link to="/Notification">
             <Div  d="flex"m={{l:"25rem"}}  className="top_svg" p={{ y: "0.25rem", x: "2rem" }} >
             
@@ -38,19 +38,17 @@ const Topbar = () => {
                 set='broken'
                 stroke='bold'
 
-              /> <Div className="top_note" p={{ x: "0.5rem", y: "0.5rem" }} d="flex" align="center"  rounded="circle" bg="blue" textColor="white">
-                    5
-                  </Div>
+              />
             </Div>
            
             </Link>
-          </Col>
-          <Col>
+          
+          
             <Div p={{ y: "0.25rem", x: "2rem" }} >
               <img className="dp" src="../image/dp.jpg" />
             </Div>
-          </Col>
-        </Row>
+          
+        </Div>
 
 
 

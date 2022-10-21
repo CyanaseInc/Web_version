@@ -49,9 +49,9 @@ const Final = ({ nextStep, prevStep,links  }) => {
                     </Div>
                     <Div>
                         <Text textWeight="500" textSize={{ xs: 'subheader', md: 'heading'}} textColor="#252859">
-                            You have successfully completed your risk profile. Your are
-                            <span className="span">Low/ Conservative</span> Investor.
-                            Your money will always be invested as follows.
+                            You have successfully completed your risk profile. We grade investors as
+                            <span className="span">Low/ Conservative, Aggressive, Assertive and Moderate</span>.
+                            Based on your answers your a<span ClassName="span">Conservative investor.</span> Your money will always be invested as follows.
 
                         </Text>
                       
@@ -65,21 +65,12 @@ const Final = ({ nextStep, prevStep,links  }) => {
                                     45%
                                 </Text>
                             </Col>
-
-                            <Col>
-                                <Text textSize="subheader"textWeight="500">
-                                    Credit
-                                </Text>
-                                <Text>
-                                    45%
-                                </Text>
-                            </Col>
                             <Col>
                             <Text textWeight="500"textSize="subheader">
                                     Credit
                                 </Text>
                                 <Text>
-                                    45%
+                                    40%    
                                 </Text>
                             </Col>
 
@@ -88,7 +79,7 @@ const Final = ({ nextStep, prevStep,links  }) => {
                                     Venture
                                 </Text>
                                 <Text>
-                                    45%
+                                   10% 
                                 </Text>
                             </Col>
                             <Col>

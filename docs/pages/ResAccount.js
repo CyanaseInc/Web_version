@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Div, Text, Container, Modal, Icon, Input, Button, Image } from "atomize";
 import { Iconly } from 'react-iconly';
 import { useForm } from "react-hook-form";
-
+import NoteSetting from './noteSetting';
 
 function ResAccount() {
 
@@ -68,12 +68,12 @@ function ResAccount() {
               <Text m={{ t: "1rem" }} textAlign="center" textColor="#252859" textWeight="500">
                 Change password
               </Text>
-              <Text textColor="#808080">
+              <Text textAlign="center" textColor="#808080">
                 Add a new secure password to your account
               </Text>
             </Div>
 
-            <Div justify="center">
+            <Div d="flex" justify="center">
 
               <Input w={{ xs: '100%', md: '24rem' }}
                 {...register("opassword", { required: true, maxLength: 15 })}
@@ -94,9 +94,9 @@ function ResAccount() {
               />
               {errors.opassword && <p className="text-error">Your old password is required</p>}
 
+            </Div>
 
-
-
+            <Div d="flex" justify="center">
               <Input w={{ xs: '100%', md: '24rem' }}
                 {...register("email", { required: true, maxLength: 15 })}
                 placeholder="Enter new password" name="email" type="password"
@@ -115,45 +115,42 @@ function ResAccount() {
                 }
               />
               {errors.email && <p className="text-error">Your first name is required</p>}
-
-
-              <Input w={{ xs: '100%', md: '24rem' }}
-                {...register("Phone_number", { required: true, maxLength: 15 })}
-                placeholder="Enter confirm password" name="Phone_number" type="password"
-                m={{ t: "3rem" }}
-                p={{ x: "2.5rem" }}
-                prefix={
-
-                  <Iconly
-                    className="ivn"
-                    name="Password"
-                    primaryColor={`#252859`}
-                    set='bulk'
-                    secondaryColor='orange'
-                    stroke='bold'
-                  />
-                }
-              />
-              {errors.Phone_number && <p className="text-error">Confirm password to continue</p>}
-              <Div d="flex" justify="center">
-                <Button type='submit'
-                  align="center"
-                  shadow="3"
-                  hoverShadow="4"
-                  bg={`#252859`}
-                  m={{ t: "1rem" }}
-                  w={{ xs: '100%', md: '24rem' }}
-                >
-                  {buttonText}
-                </Button>
-              </Div>
-
             </Div>
-
-
-
-
           </Div>
+          <Div d="flex" justify="center">
+
+            <Input w={{ xs: '100%', md: '24rem' }}
+              {...register("Phone_number", { required: true, maxLength: 15 })}
+              placeholder="Enter confirm password" name="Phone_number" type="password"
+              m={{ t: "3rem" }}
+              p={{ x: "2.5rem" }}
+              prefix={
+
+                <Iconly
+                  className="ivn"
+                  name="Password"
+                  primaryColor={`#252859`}
+                  set='bulk'
+                  secondaryColor='orange'
+                  stroke='bold'
+                />
+              }
+            />
+            {errors.Phone_number && <p className="text-error">Confirm password to continue</p>}
+          </Div>
+          <Div d="flex" justify="center">
+            <Button type='submit'
+              align="center"
+              shadow="3"
+              hoverShadow="4"
+              bg={`#252859`}
+              m={{ t: "1rem" }}
+              w={{ xs: '100%', md: '24rem' }}
+            >
+              {buttonText}
+            </Button>
+          </Div>
+
         </form>
 
 
@@ -174,7 +171,7 @@ function ResAccount() {
 
               <Iconly
 
-                name="Lock"
+                name="People"
                 primaryColor={`#252859`}
                 set='bulk'
                 secondaryColor='orange'
@@ -190,7 +187,7 @@ function ResAccount() {
               </Text>
             </Div>
 
-            <Div justify="center">
+            <Div d="flex" justify="center">
 
               <Input w={{ xs: '100%', md: '24rem' }}
                 {...register("name", { required: true, maxLength: 15 })}
@@ -211,9 +208,9 @@ function ResAccount() {
               />
               {errors.name && <p className="text-error">Full name is required</p>}
 
+            </Div>
 
-
-
+            <Div d="flex" justify="center">
               <Input w={{ xs: '100%', md: '24rem' }}
                 {...register("email", { required: true, maxLength: 15 })}
                 placeholder="Enter their email address" name="email" type="text"
@@ -233,7 +230,8 @@ function ResAccount() {
               />
               {errors.email && <p className="text-error">Email address is required</p>}
 
-
+            </Div>
+            <Div d="flex" justify="center">
               <Input w={{ xs: '100%', md: '24rem' }}
                 {...register("Phone_number", { required: true, maxLength: 15 })}
                 placeholder="Enter Phone number" name="Phone_number" type="text"
@@ -252,26 +250,21 @@ function ResAccount() {
                 }
               />
               {errors.Phone_number && <p className="text-error">Phone number is required</p>}
-              <Div d="flex" justify="center">
-                <Button type='submit'
-                  align="center"
-                  shadow="3"
-                  hoverShadow="4"
-                  bg={`#252859`}
-                  m={{ t: "1rem" }}
-                  w={{ xs: '100%', md: '24rem' }}
-                >
-                  {buttonText}
-                </Button>
-              </Div>
-
+            </Div>
+            <Div d="flex" justify="center">
+              <Button type='submit'
+                align="center"
+                shadow="3"
+                hoverShadow="4"
+                bg={`#252859`}
+                m={{ t: "1rem" }}
+                w={{ xs: '100%', md: '24rem' }}
+              >
+                {buttonText}
+              </Button>
             </Div>
 
-
-
-
           </Div>
-
         </form>
 
 
@@ -292,9 +285,9 @@ function ResAccount() {
           </Div>
           <Div className="Zindex">
             <Iconly
-              name="Lock"
+              name="Camera"
               primaryColor={`black`}
-              set='bulk'
+              set='broken'
               secondaryColor='orange'
               stroke='bold'
 
@@ -377,14 +370,14 @@ function ResAccount() {
             <Text textColor={`#ff9b00`} textWeight="500" m={{ l: "0.7rem", }}>
               wjv@cyanase.com
             </Text>
-            <Div rounded="md" m={{ t: "1rem" }} p="1rem" bg="gray300" d="flex" justify="center">
+            <Div rounded="md" m={{ t: "0.5rem" }} p="1rem" bg="gray300" d="flex" justify="center">
               <Text m={{ t: "0.8rem" }} textWeight="500" textSize="subheader">
                 Account status
               </Text>
-              <Div p="1rem">
+              <Div m={{l:"2rem"}}>
                 <Button
                   bg="#252859"
-                  rounded="circle"
+                rounded="ci"
 
                 >
                   Complete
@@ -458,35 +451,42 @@ function ResAccount() {
           onClose={() => setTopUp(false)}
         />
         <Div>
-          <Text m={{ t: "1rem" }} textWeight="900"> Account Settings</Text>
+          <Text textSize="heading"
+          m={{ t: "1rem" }} 
+          textWeight="500"
+          > Account Settings</Text>
           <Div
             onClick={() => {
               ChangeModal("password");
               setTopUp(true);
             }
-            }
-            p={{ y: "0.25rem" }}
-            m={{ t: "1rem", }}
-            className="listings">
-            <Iconly
+            }>
+            <Div
 
-              name="Password"
-              primaryColor={`black`}
-              set='broken'
-              secondaryColor='orange'
-              stroke='bold'
-            />
-            <Text
-              textSize={`20px`}
-              textColor={`#ff9b00`}
-              textWeight="700"
-              m={{ l: "0.7rem", }}>
-              Password
+              p={{ y: "0.25rem" }}
+              m={{ t: "1rem", }}
+              className="listings">
+              <Iconly
+
+                name="Password"
+                primaryColor={`black`}
+                set='broken'
+                secondaryColor='orange'
+                stroke='bold'
+              />
+              <Text
+                textSize={`20px`}
+                textColor={`#ff9b00`}
+                textWeight="700"
+                m={{ l: "0.7rem", }}>
+                Password
+              </Text>
+            </Div>
+            <Text textColor={`#808080`} textWeight="500" m={{ l: "0.7rem", }}>
+              Change user password
             </Text>
           </Div>
-          <Text textColor={`#808080`} textWeight="500" m={{ l: "0.7rem", }}>
-            Change user password
-          </Text>
+
         </Div>
         <Div>
 

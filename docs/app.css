@@ -142,7 +142,7 @@
 
 .cont {
   margin-top: 2rem;
-  margin-left: 150px;
+  margin-left: 20rem;
 }
 
 .notification {
@@ -153,7 +153,7 @@
 .input {
   outline: 0;
   border-width: 0 0 2px;
-  border-color: blue
+  border-color: blue;
 }
 
 .my_card {
@@ -334,24 +334,35 @@ padding-bottom: 2rem;
 .imagz{
 z-index: -30;
 
+height:150px;
 }
 .Zindex{
 Z-index: 50;
 margin-top:-70px;
-margin-left: 10rem;
+margin-left: 18rem;
+position :fixed;
 }
 .Zindex svg{
 width: 55px;
 height:55px;
   }
+  .under svg{
+width:200px;
+height:200px;
+
+  }
 @media screen and (max-width: 768px) {
-  .menu {
+  .cont {
     display: none;
   }
 
-
+  .Zindex{
+    Z-index: 50;
+    margin-top:-70px;
+    margin-left: 10rem;
+    }
   .ResHome {
-    display: block;
+    display: inline;
 
   }
 

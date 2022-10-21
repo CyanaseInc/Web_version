@@ -12,7 +12,7 @@ import { Container, Text, Tag, Div, Col, Row, Modal, Button } from "atomize";
 import { Iconly } from 'react-iconly';
 
 function Deposit() {
-  const linkType ="Deposit";
+  const linkType = "Deposit";
   //state for steps
   const [step, setstep] = useState(1);
 
@@ -26,10 +26,10 @@ function Deposit() {
   const [direction, setValue] = useState("personal");
 
   // Function for going back to previous directional page
- const back =() =>{
+  const back = () => {
 
-  setValue("personal");
- }
+    setValue("personal");
+  }
   // function for going to next step by increasing step state by 1
   const nextStep = () => {
     setstep(step + 1);
@@ -155,10 +155,15 @@ function Deposit() {
   return (
     <>
       <Container >
-
+       
         <Div w="100" m={{ t: "5rem", l: "10rem" }}>
+        <Text
+          textAlign="center"
+          textSize="heading" m={{ t: "1rem" }}
+          textWeight="500">
+          Deposit
+        </Text>
 
-  
           {/******************ADDING THE SLIDING COMPONENTS OF THE REACT APP******************/}
 
           <AllSteps />

@@ -3,7 +3,9 @@ import { Container, Text, Button, Div, Col, Modal, Icon } from "atomize";
 import "../app.css";
 import Investment from './ResInvestment';
 import ResAccount from './ResAccount';
+import NoteSetting from './noteSetting';
 import { Iconly } from 'react-iconly';
+
 
 function ResSetting() {
 
@@ -26,7 +28,7 @@ function ResSetting() {
   } else if (modalContent === "notification") {
 
        // if user clicks account notification, show account notification content
-     myModal = "hello note";
+     myModal = <NoteSetting/>;
 
   }
 

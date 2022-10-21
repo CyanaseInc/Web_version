@@ -1,18 +1,183 @@
 import React, { useState, useEffect } from "react";
-import { Text, Button, Div, Col, Row, Icon, Modal, Input } from "atomize";
+import { Text, Button, Div, Col, Row, Icon, Modal, Input,Container } from "atomize";
 import "../app.css";
 import { Iconly } from 'react-iconly';
 import ProgressBar from "../components/progressbar";
 import { useForm } from "react-hook-form";
-
+import StepOne from '../components/goal/StepOne';
+import StepTwo from '../components/goal/StepTwo';
+import StepThree from '../components/goal/StepThree';
+import Final from '../components/goal/Final';
+import StepFour from "../components/goal/StepFour";
+import StepFive from "../components/goal/StepFive";
 function ResGoal() {
 
 
-    ///DEPOSIT FOR GOAL MODAL
-    const [showTopUP, setTopUp] = useState(false);
+
+    // States to handle errors in the form
     const { register, handleSubmit, formState: { errors } } = useForm();
+
+    const onSubmit = (datal) => {
+
+        // change the status to laoding
+
+        console.log(datal);
+
+        // send data to the API
+
+        const API_PATH = 'http://localhost:3000/handler.php';
+
+        // MAKE AN AJAX REQUEST
+
+        axios({
+            method: 'post',
+            url: `${API_PATH}`,
+            headers: { 'content-type': 'application/json' },
+            data: datal
+        })
+            .then(resulta => {
+
+                console.log(resulta.result);
+            })
+            .catch(error => alert(error));
+    }
+    //states to handle the previous and next buttons
+    const [step, setstep] = useState(1);
+
+    //states for form data
+    const [formData, setFormData] = useState({
+
+
+    });
+
+
+    // State to handle show and hiding goall addition modal
+    const [showModal, hideModal] = useState(false);
+    // function for going to next step by increasing step state by 1
+    const nextStep = () => {
+        setstep(step + 1);
+    };
+    // function for going to previous step by decreasing step state by 1
+    const prevStep = () => {
+        setstep(step - 1);
+    };
+
+    // handling form input data by taking onchange value and updating our previous form data state
+    const handleInputData = input => e => {
+        // input value from the form
+        const { value } = e.target;
+
+        //updating for data state taking previous state and then adding new value to create new object
+        setFormData(prevStep => ({
+            ...prevStep,
+            [input]: value
+        }));
+    }
+
+
+    const GoalSteps = () => {
+
+        switch (step) {
+            // case 1 to show stepOne form and passing nextStep, prevStep, and handleInputData as handleFormData method as prop and also formData as value to the fprm
+            case 1:
+                return (
+
+
+                    <StepOne nextStep={nextStep} values={formData} />
+
+                );
+            case 2:
+                return (
+
+
+                    <StepTwo prevStep={prevStep} nextStep={nextStep} handleFormData={handleInputData} values={formData} />
+
+                );
+            case 3:
+                return (
+
+
+                    <StepThree prevStep={prevStep} nextStep={nextStep} handleFormData={handleInputData} values={formData} />
+
+                );
+            case 4:
+                return (
+
+
+                    <StepFour prevStep={prevStep} nextStep={nextStep} handleFormData={handleInputData} values={formData} />
+
+                );
+            case 5:
+                return (
+
+
+                    <StepFive prevStep={prevStep} nextStep={nextStep} handleFormData={handleInputData} values={formData} />
+
+                );
+            // O
+            // Only formData is passed as prop to show the final value at form submit
+            case 6:
+                return (
+                    <div className="App">
+                        <Container>
+                            <Row>
+                                <Col md={{ span: 6, offset: 3 }} className="custom-margin">
+                                    <Final prevStep={prevStep} values={formData} />
+                                </Col>
+                            </Row>
+                        </Container>
+                    </div>
+                );
+
+            // default case to show nothing
+            default:
+                return (
+                    <div className="App">
+                    </div>
+                );
+        }
+
+
+
+    }
+
+    const MyGoals = ({ isOpen, onClose }) => {
+        return (
+            <Modal
+                isOpen={isOpen}
+                onClose={onClose}
+                rounded="0"
+                maxW="100vw"
+                m="0"
+                h="205vw"
+            >
+                <Icon onClick={onClose} size="40px" name="LeftArrowSolid" color="gray400" />
+                {/******Modal content */}
+                <GoalSteps />
+            </Modal>
+        );
+    };
+    /// HANDLING SETTING GOALS USING A MODAL
+
+
+
+
+    /// States for change of conetent to display when user clicks a popup modal
+    const [content, changeContent] = useState("deposit");
+
+    ///state to show and hide modal MODAL
+    const [showTopUP, setTopUp] = useState(false);
+
+    //states to  handle errors in the form
+
+
+    /// Check the on click event for the modal and change content
+
+
+  
+
     ///MY POPUP  MODAL
-    const MyModal = () => {
+    const Deposit = () => {
 
         return (
 
@@ -85,8 +250,12 @@ function ResGoal() {
         )
 
     }
+
+
+
+
     //MY modal handler
-    const DepositModal = ({ isOpen, onClose }) => {
+    const MyModal = ({ isOpen, onClose }) => {
 
         return (
             <Modal
@@ -107,7 +276,7 @@ function ResGoal() {
                     cursor="pointer"
                 />
 
-                <MyModal />
+                <Deposit/>
             </Modal>
         );
 
@@ -120,29 +289,41 @@ function ResGoal() {
 
     return (
         <>
-        <Div d="flex" align="center">
-        <Text
-                textSize="heading"
-                textColor="#252859"
-                textWeight="500">
-                Your Goals
-            </Text>
-            <Div p="0.5rem">
-            <Button
-            rounded="circle"
-            shadow="5"
-            bg="gray100"
-            border="1px solid"
-            border="#252859"
-            >
-                Add new goal
-            </Button>
-            </Div>
-        
-        </Div>
-          
+            <Div d="flex" align="center">
+                <Text
+                    textSize="heading"
+                    textColor="#252859"
+                    textWeight="500">
+                    Your Goals
+                </Text>
+                <Div m={{ l: "2rem" }} p="0.5rem">
+                    <Button
+                        onClick={() => {
+                            hideModal(true);
 
-            <DepositModal
+
+                        }
+                        }
+                        rounded="circle"
+                        shadow="3"
+                        bg="gray100"
+                        border="1px solid"
+                        borderColor="#252859"
+                        textColor="#252859"
+                    >
+                        Add new goal
+                    </Button>
+                    <MyGoals
+                        isOpen={showModal}
+                        onClose={() => hideModal(false)
+                        }
+                    />
+                </Div>
+
+            </Div>
+
+
+            <MyModal
                 isOpen={showTopUP}
                 onClose={() => setTopUp(false)}
             />
@@ -168,7 +349,10 @@ function ResGoal() {
                     </Div>
                     <Div p="0.5rem">
                         <Button
-                            onClick={() => setTopUp(true)}
+                            onClick={() => {
+                                changeContent("deposit");
+                                setTopUp(true);
+                            }}
                             bg="#ff9b00"
                             rounded="circle"
                             sgadow="5"
@@ -217,7 +401,10 @@ function ResGoal() {
                     </Div>
                     <Div p="0.5rem">
                         <Button
-                            onClick={() => setTopUp(true)}
+                            onClick={() => {
+                                changeContent("deposit");
+                                setTopUp(true);
+                            }}
                             bg="#ff9b00"
                             rounded="circle"
                             sgadow="5"
@@ -266,7 +453,10 @@ function ResGoal() {
                     </Div>
                     <Div p="0.5rem">
                         <Button
-                            onClick={() => setTopUp(true)}
+                            onClick={() => {
+                                changeContent("deposit");
+                                setTopUp(true);
+                            }}
                             bg="#ff9b00"
                             rounded="circle"
                             sgadow="5"
