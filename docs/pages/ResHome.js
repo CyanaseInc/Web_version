@@ -74,9 +74,11 @@ function ResHome() {
                 <Text textSize="paragraph">Nov, 5</Text>
                 <Text textSize="subheader"><b>Your statistics</b></Text>
               </Div>
+
+
               <Div flexGrow="1" d="flex" justify="flex-end" >
                 <Row>
-                <Col>
+                  <Col>
                     <Div
                       onClick={() => setMenue(true)}
                       h="40px" w="40px"
@@ -91,7 +93,7 @@ function ResHome() {
                         stroke='bold'
                       />
                     </Div>
-                   
+
                   </Col>
                   <Col>
 
@@ -132,37 +134,26 @@ function ResHome() {
                 </Row>
 
                 <MenueDrawer
-                      isOpen={showMenue}
-                      onClose={() => setMenue(false)}
-                    />
+                  isOpen={showMenue}
+                  onClose={() => setMenue(false)}
+                />
 
 
               </Div>
             </Div>
+            {/***********************************LOCAL CURRENCY INVESTMENT STATISTICS**************************************************/}
             <Div className="text" p="0.2rem">
               <Row>
                 <Col>
                   <Div p={{ x: "0.5rem", y: "0.5rem" }} bg="#3C426B" rounded="md">
-                    <Iconly
-                      primaryColor='#ff9b00'
-                      name="Wallet"
-                      set='bold'
-                      stroke='bold'
 
-                    />
                     <Text textSize="subheader">Deposit</Text>
                     <Text textSize="title">UGX <b>230,000</b></Text>
                   </Div>
                 </Col>
                 <Col>
                   <Div p={{ x: "0.5rem", y: "0.5rem" }} bg="#3C426B" rounded="md">
-                    <Iconly
-                      primaryColor='#ff9b00'
-                      name="Work"
-                      set='bold'
-                      stroke='bold'
 
-                    />
                     <Text textSize="subheader">Networth</Text>
                     <Text textSize="title">UGX <b>2,000,0</b></Text>
                   </Div>
@@ -172,6 +163,31 @@ function ResHome() {
 
 
             </Div>
+
+            {/***********************************DOLLAR ACCOUNT CURRENCY**************************************************/}
+            <Text m={{t:"1rem"}} textSize="subheader"><b>Dollar account</b></Text>
+            <Div className="text" p="0.2rem">
+              <Row>
+                <Col>
+                  <Div p={{ x: "0.5rem", y: "0.5rem" }} bg="#3C426B" rounded="md">
+
+                    <Text textSize="subheader">Deposit</Text>
+                    <Text textSize="title">USD<b>0.0</b></Text>
+                  </Div>
+                </Col>
+                <Col>
+                  <Div p={{ x: "0.5rem", y: "0.5rem" }} bg="#3C426B" rounded="md">
+
+                    <Text textSize="subheader">Networth</Text>
+                    <Text textSize="title">USD <b>0.00</b></Text>
+                  </Div>
+                </Col>
+              </Row>
+
+
+
+            </Div>
+            {/***********************************Saving tips**************************************************/}
             <Div bg="#3C426B" rounded="md" m={{ t: "1rem" }} p={{ x: "0.5rem", y: "0.5rem" }}>
               <Row flex="row">
                 <Col size="2">

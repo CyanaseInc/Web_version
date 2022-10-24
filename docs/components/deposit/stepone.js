@@ -7,6 +7,7 @@ import DepositType from "../topup/depositType";
 import Online from "../topup/online";
 import Offline from "../topup/offline";
 import Wallet from "../topup/wallet";
+import AccountType from "../topup/AccountType";
 
 
 // creating functional component ans getting props from app.js and destucturing them
@@ -78,8 +79,16 @@ const StepOne = ({ nextStep, setValue,links }) => {
                             <DepositType myLinks={links}setValues={setValues} nextStepOnline={nextStepOnline} handleFormData={handleInputData} values={formData} />
 
                         );
+                        case 2:
+                            return (
+    
+    
+                                <AccountType setValues={setValues} nextStepOnline={nextStepOnline}  prevStepOnline={prevStepOnline}handleFormData={handleInputData} values={formData} />
+    
+                            );
+                        
                     // case 2 to show stepTwo form passing nextStep, prevStep, and handleInputData as handleFormData method as prop and also formData as value to the fprm
-                    case 2:
+                    case 3:
                         return (
 
                             <Online nextStepOnline={nextStepOnline} prevStepOnline={prevStepOnline} handleFormData={handleInputData} values={formData} />
@@ -102,11 +111,18 @@ const StepOne = ({ nextStep, setValue,links }) => {
                         return (
 
 
-                            <DepositType setValues={setValues} nextStepOnline={nextStepOnline} handleFormData={handleInputData} values={formData} />
+                            <DepositType setValues={setValues} nextStepOnline={nextStepOnline}  handleFormData={handleInputData} values={formData} />
+
+                        );
+                        case 2:
+                        return (
+
+
+                            <AccountType setValues={setValues} nextStepOnline={nextStepOnline}  prevStepOnline={prevStepOnline} handleFormData={handleInputData} values={formData} />
 
                         );
                     // case 2 to show stepTwo form passing nextStep, prevStep, and handleInputData as handleFormData method as prop and also formData as value to the fprm
-                    case 2:
+                    case 3:
                         return (
 
                             <Offline nextStepOnline={nextStepOnline} prevStepOnline={prevStepOnline} handleFormData={handleInputData} values={formData} />
@@ -119,6 +135,7 @@ const StepOne = ({ nextStep, setValue,links }) => {
 
                 switch (stepp) {
                     // case 1 to show stepOne form and passing nextStep, prevStep, and handleInputData as handleFormData method as prop and also formData as value to the fprm
+                   
                     case 1:
                         return (
 
@@ -126,8 +143,15 @@ const StepOne = ({ nextStep, setValue,links }) => {
                             <DepositType setValues={setValues} nextStepOnline={nextStepOnline} handleFormData={handleInputData} values={formData} />
 
                         );
-                    // case 2 to show stepTwo form passing nextStep, prevStep, and handleInputData as handleFormData method as prop and also formData as value to the fprm
                     case 2:
+                        return (
+
+
+                            <AccountType setValues={setValues} nextStepOnline={nextStepOnline} handleFormData={handleInputData} values={formData} />
+
+                        );
+                    // case 2 to show stepTwo form passing nextStep, prevStep, and handleInputData as handleFormData method as prop and also formData as value to the fprm
+                    case 3:
                         return (
 
                             <Wallet nextStepOnline={nextStepOnline} prevStepOnline={prevStepOnline} handleFormData={handleInputData} values={formData} />
@@ -153,7 +177,7 @@ const StepOne = ({ nextStep, setValue,links }) => {
                 rounded="0"
                 maxW={{ xs: 'auto', md: '40vw' }}
                 m={{ t: "2rem" }}
-                h="80vh"
+                h="auto"
             >
                 <Icon
                     name="Cross"

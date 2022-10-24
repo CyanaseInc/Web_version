@@ -21,27 +21,27 @@ function Goal() {
 
   const onSubmit = (datal) => {
 
-      // change the status to laoding
-    
-      console.log(datal);
+    // change the status to laoding
 
-      // send data to the API
+    console.log(datal);
 
-      const API_PATH = 'http://localhost:3000/handler.php';
+    // send data to the API
 
-      // MAKE AN AJAX REQUEST
+    const API_PATH = 'http://localhost:3000/handler.php';
 
-      axios({
-          method: 'post',
-          url: `${API_PATH}`,
-          headers: { 'content-type': 'application/json' },
-          data: datal
+    // MAKE AN AJAX REQUEST
+
+    axios({
+      method: 'post',
+      url: `${API_PATH}`,
+      headers: { 'content-type': 'application/json' },
+      data: datal
+    })
+      .then(resulta => {
+
+        console.log(resulta.result);
       })
-          .then(resulta => {
-
-              console.log(resulta.result);
-          })
-          .catch(error => alert(error));
+      .catch(error => alert(error));
   }
   //states to handle the previous and next buttons
   const [step, setstep] = useState(1);
@@ -163,7 +163,7 @@ function Goal() {
       </SideDrawer>
     );
   };
- // states to show and hide the set goals sidedrawer
+  // states to show and hide the set goals sidedrawer
   const [showDrawer, setShow] = useState(false);
   //// *****************************TOP UP BUTTON STATE MODAL****************************************************
 
@@ -207,7 +207,7 @@ function Goal() {
             Top up your investment wallet
           </Text>
           <Text
-           textAlign="center" textColor="#898989"
+            textAlign="center" textColor="#898989"
           >
             Make it easy to choose your investment type by depositing to your wallet
           </Text>
@@ -245,7 +245,7 @@ function Goal() {
             </Div>
           </form>
 
-          
+
 
         </Div>
 
@@ -427,22 +427,25 @@ function Goal() {
             <Col>
               <Div className="" d="flex">
                 <Text textSize="subheader" textColor={`#252859`}><b>GOALS</b></Text>
-                <Button
-                  onClick={() =>
-                    setShow(true)
-                  }
-                  h="2rem"
-                  w="7.5rem"
-                  rounded="md"
-                  m={{ l: "3rem", t: "-0.5rem" }}
+              
+                  <Button
+                    onClick={() =>
+                      setShow(true)
+                    }
+                    h="2rem"
+                    w="7.5rem"
+                    rounded="md"
+                    m={{ l: "20rem", t: "-0.5rem" }}
 
-                  className="button2"
-                  bg={`#252859`}
+                    className="button2"
+                    bg={`#252859`}
 
 
-                >
-                  Set goal
-                </Button>
+                  >
+                    Set goal
+                  </Button>
+             
+
                 <GoalDrawer
                   isOpen={showDrawer}
                   onClose={() => setShow(false)}
@@ -518,7 +521,11 @@ function Goal() {
                 </Div>
 
               </Div>
-              <Div shadow="4" m={{ t: "0.5rem" }} rounded="md" className="goal-resp" p={{ y: "2rem", x: "1.25rem" }}>
+              <Div
+                shadow="4"
+                m={{ t: "0.5rem" }}
+                rounded="md"
+                className="goal-resp" p={{ y: "2rem", x: "1.25rem" }}>
                 {/************************************Chat System************************************/}
                 <Div d="flex">
 
