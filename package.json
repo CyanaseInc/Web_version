@@ -9,7 +9,7 @@
   "scripts": {
     "start": "webpack-dev-server",
     "docs": "NODE_ENV=production webpack -p",
-    "build": "webpack -d && copy src\\index.html dist\\index.html /y && webpack-dev-server --content-base src --inline --port 3000",
+    "build": "babel src -d dist",
     "clean": "rm -rf dist",
     "dist": "yarn run clean && yarn run build"
   },

@@ -1,0 +1,1 @@
+ {/** * className={`${hideDiv === "yes" ? 'display_yes' : 'display_none'}`}**/}
